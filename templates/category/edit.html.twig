@@ -1,0 +1,26 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}Edit Category{% endblock %}
+
+{% block stylesheets %}
+<style>
+.custom-file-label { opacity: 0; }
+.custom-file-input { opacity: 1; }
+
+</style>
+
+{% endblock %}
+
+{% block body %}
+
+    <a class="btn btn-secondary mb-3" href="{{ path('category_index') }}">
+        <i class="fa fa-arrow-circle-left"></i>back to list</a>
+
+    <div class="card p-3">
+        <h1>Edit Category</h1>
+        {{ include('category/_delete_form.html.twig') }}
+        {{ include('category/_form.html.twig', {'button_label': 'Update'}) }}
+    </div>
+
+    
+{% endblock %}

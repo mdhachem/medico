@@ -1,0 +1,221 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ produit.name }}
+{% endblock %}
+
+{% block stylesheets %}
+<style>
+    .custom-alert{ padding: 5px 10px; display:none } .custom-alert-success{ padding: 5px 10px; display:none }
+</style>
+{% endblock %}
+
+{% block body %}
+
+    <!-- SECTION -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+        <div class="breadcrumbs">
+				<ol class="breadcrumb">
+					<li><a href="{{path('homepage')}}">Home</a></li>
+                    <li class="active">{{ produit.name }}</li>
+				</ol>
+			</div>
+            <!-- row -->
+            <div class="row">
+                <!-- Product main img -->
+                <div class="col-md-5 col-md-push-2">
+                    <div id="product-main-img">
+                        <div class="product-preview">
+                            <img src="/uploads/imagep/{{ produit.primaryImage }}" alt="">
+                        </div>
+
+                        <div class="product-preview">
+                            <img src="/uploads/images1/{{ produit.secondaryImage1 }}" alt="">
+                        </div>
+
+                        <div class="product-preview">
+                            <img src="/uploads/images2/{{ produit.secondaryImage2 }}" alt="">
+                        </div>
+                    </div>
+                </div>
+                <!-- /Product main img -->
+
+                <!-- Product thumb imgs -->
+                <div class="col-md-2  col-md-pull-5">
+                    <div id="product-imgs">
+                        <div class="product-preview">
+                            <img src="/uploads/imagep/{{ produit.primaryImage }}" alt="">
+                        </div>
+
+                        <div class="product-preview">
+                            <img src="/uploads/images1/{{ produit.secondaryImage1 }}" alt="">
+                        </div>
+
+                        <div class="product-preview">
+                            <img src="/uploads/images2/{{ produit.secondaryImage2 }}" alt="">
+                        </div>
+                    </div>
+                </div>
+                <!-- /Product thumb imgs -->
+
+                <!-- Product details -->
+                <div class="col-md-5">
+                    <div class="product-details">
+                        <h2 class="product-name">{{ produit.name }}</h2>
+                        <h3 color="green">{{ produit.rowMaterial }}</h3>
+                        <div>
+                            <h3 class="product-price">{{ produit.price }}
+                                DT</h3>
+                        </div>
+                        <p>{{ produit.description | raw}}</p>
+                        <form action="{{ path('add_to_cart', {'id': produit.id}) }}" method="post">
+                            <div class="add-to-cart">
+                                <div class="qty-label" style="margin-bottom: 15px;">
+                                    Qty
+                                    <div class="input-number">
+                                        <input type="number" name="quantite" value="1">
+                                        <span class="qty-up">+</span>
+                                        <span class="qty-down">-</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                      <label for="color">Color</label>
+                                      <input type="text" name="color" class="form-control" id="demo" data-wheelcolorpicker rows="3"></input>
+                                </div>
+            
+                               <div class="form-group">
+                                      <label for="">Description</label>
+                                      <textarea name="description" class="form-control" name="" id="" rows="3"></textarea>
+                                </div>
+                             
+                                <button type="submit" class="add-to-cart-btn">
+                                    <i class="fa fa-shopping-cart"></i>
+                                    add to cart</button>
+                            </div>
+                        </form>
+
+                        <ul class="product-links">
+                            <li>Share:</li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-google-plus"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-envelope"></i>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+                <!-- /Product details -->
+
+                <!-- Product tab -->
+                <div class="col-md-12">
+                    <div id="product-tab">
+                        <!-- product tab nav -->
+                        <ul class="tab-nav">
+                            <li class="active">
+                                <a data-toggle="tab" href="#tab1">Description</a>
+                            </li>
+                          
+                        </ul>
+                        <!-- /product tab nav -->
+
+                        <!-- product tab content -->
+                        <div class="tab-content">
+                            <!-- tab1 -->
+                            <div id="tab1" class="tab-pane fade in active">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p>{{ produit.description | raw }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /tab1 -->
+
+                            
+
+                        </div>
+                        <!-- /product tab content -->
+                    </div>
+                </div>
+                <!-- /product tab -->
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /SECTION -->
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(function () {
+            'use strict';
+
+            var nomError = true,
+                emailError = true,
+                descError = true;
+
+            $('#nom').blur(function () {
+                if ($(this).val() === '') {
+                    nomError = true;
+                } else {
+                    nomError = false;
+                }
+            });
+            $('#email').blur(function () {
+                if ($(this).val() === '') {
+                    emailError = true;
+                } else {
+                    emailError = false;
+                }
+            });
+            $('#desc').blur(function () {
+                if ($(this).val() === '') {
+                    descError = true;
+                } else {
+                    descError = false;
+                }
+            });
+
+            $('.review-form').submit(function (e) {
+                if (nomError === true || emailError === true || descError === true) {
+                    e.preventDefault();
+                    $('.custom-alert').fadeIn(200);
+                    $('.custom-alert-success').hide();
+                } else {
+                    $('.custom-alert').hide();
+                    $('.custom-alert-success').fadeIn(200);
+                    $('#desc').text('');
+                    $('#nom').text('');
+                    $('#email').text('');
+                }
+
+            })
+
+
+
+        });
+
+        $(function() {
+	        $('#demo').wheelColorPicker();
+	    });
+    </script>
+
+{% endblock %}

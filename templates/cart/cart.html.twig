@@ -1,0 +1,161 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cart {% endblock %}
+
+{% block stylesheets %}
+<style>
+/*************************
+*******Cart CSS******
+**************************/
+#do_action {
+  margin-bottom: 50px;
+}
+
+#do_action .total_area {
+  padding-bottom: 18px !important;
+}
+
+#do_action .total_area, #do_action .chose_area {
+  border: 1px solid #E6E4DF;
+  color: #696763;
+  padding: 30px 25px 30px 0;
+  margin-bottom: 80px;
+}
+
+#do_action .total_area {
+  padding-bottom: 18px !important;
+}
+
+.total_area{
+  padding: 15px !important;
+}
+
+.total_area span {
+  float: right;
+}
+
+.total_area ul li {
+  background:#E6E4DF;
+  color: #696763;
+  margin-top: 10px;
+  padding: 7px 20px;
+}
+
+.btn-validation{
+	margin-top: 15px;
+}
+
+
+</style>
+{% endblock %}
+
+{% block body %}
+
+<section id="cart_items">
+		<div class="container">
+			
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+					<li><a href="{{path('homepage')}}">Home</a></li>
+					<li class="active">Panier</li>
+				</ol>
+			</div>
+			
+        {% if products is not empty %}
+			<div class="table-responsive cart_info">
+				<table class="table table-condensed">
+					<thead>
+						<tr class="cart_menu">
+							<td class="image">Produit</td>
+							<td class="description">Détails</td>
+							<td class="price">Prix TND</td>
+							<td class="price">Color</td>
+							<td class="quantity">Quantité</td>
+							<td class="total">Total TND</td>
+							<td></td>
+						</tr>
+					</thead>
+					<tbody>
+						
+						{% for prd in products %}
+						{% set foo = cart[prd.id] |split('#') %}
+						<tr>
+							<td class="cart_product">
+								<a href="#"><img src="/uploads/imagep/{{prd.primaryImage}}" width="100px" alt=""></a>
+							</td>
+							<td class="cart_description">
+								<h4><a href="">{{prd.name}}</a></h4>
+								<p>ID: {{prd.id}}</p>
+							</td>
+							<td class="cart_price">
+								<p>#{{ foo[1] }}</p>
+							</td>
+							<td class="cart_price">
+								<p>{{prd.price}}</p>
+							</td>
+							<td class="cart_quantity">
+							
+								<div class="cart_quantity_button">
+									
+									<button onclick="location.href='{{ path('add_one_to_cart', { 'id' : prd.id }) }}'">+</button>
+									<input id="qte_1" class="cart_quantity_input" type="text" name="quantity" value="{{foo[0]}}" autocomplete="off" size="2" disabled="">
+									<button onclick="location.href='{{ path('remove_one_to_cart', { 'id' : prd.id }) }}'">-</button>
+								</div>
+							</td>
+							<td class="cart_total">
+								<p class="cart_total_price">{{foo[0] * prd.price}}</p>
+							</td>
+							<td class="cart_delete">
+								<a class="cart_quantity_delete" 
+								href="{{path('remove_from_cart', {'id': prd.id})}}">
+								<i class="fa fa-times"></i>
+								</a>
+							</td>
+						</tr>
+						{% endfor %}
+
+						
+
+					</tbody>
+				</table>
+			</div>
+
+
+		</div>
+	</section> <!--/#cart_items-->
+
+	<section id="do_action">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4">
+
+				</div>
+				<div class="col-sm-8">
+					<div class="total_area">
+						<ul>
+							<li>Sous total <span>{{total_ht}}</span></li>
+							<li>TVA (10%) <span>{{mnt_tva}}</span></li>
+							<li>Frais de transport <span>Gratuit</span></li>
+							<li>Total <span>{{total_ttc}}</span></li>
+						</ul>
+
+						<div class="btn-validation">
+							<a class="btn btn-danger" 
+							href="{{path('clear_cart')}}">Vider le panier</a> 
+
+							<a class="btn btn-success" 
+							href="{{path('order')}}">Valider ma commande</a> 
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</section><!--/#do_action-->	
+
+    {% else %}
+		<h4> Panier est vide !!! </h4>
+		<br><br><br><br><br><br><br><br><br><br><br><br>
+	{% endif %}
+
+{% endblock %}

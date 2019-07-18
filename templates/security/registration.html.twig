@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Sing up{% endblock %}
+
+
+{% block body %}
+
+<h1 class="text-center">Register</h1>
+    
+                    {{ form_start(form)}}
+                    {{ form_row(form.fisrtName,{'label':'First name'})}}
+                    {{ form_row(form.lastname,{'label':'Last name'})}}
+                    {{ form_row(form.telephone,{'label':'Telephone'})}}
+                    {{ form_row(form.address,{'label':'Address'})}}
+                    {{ form_row(form.company,{'label':'Company'})}}
+                    {{ form_row(form.email,{'label':'Email'}) }}
+                    {{ form_row(form.password,{'label': 'Password'})}}
+                    {{ form_row(form.confirm_password,{'label':'Password confirmation'})}}
+                    <div class="form-group text-center">
+                        <button class="btn btn-success account-btn w-100" type="submit">Register</button>
+                    </div>
+                    {{ form_end(form)}}
+                
+{% endblock body %}
+
+

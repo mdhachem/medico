@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+<form method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    <h1 class="text-center">Login</h1>
+
+                    <form method="post">
+                     
+                        <div class="form-group">
+                            <label for="username">Email</label>
+                            <input type="text" class="form-control" placeholder="email" name="_username" id="username" value="{{ last_username }}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input class="form-control" id="password" name="_password" placeholder="password" type="password"/>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" id="remember-me" name="remember-me" type="checkbox">
+                            <label class="custom-control-label" for="remember-me">Remember Me</label>
+                        </div>
+                        <div class="form-group text-center">
+                            <button class="btn btn-primary mb-3" type="submit">Login</button>
+                        </div>
+                    </form>
+{% endblock %}

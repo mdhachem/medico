@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}new Product{% endblock %}
+
+{% block stylesheets %}
+<style>
+.custom-file-label { opacity: 0; }
+.custom-file-input { opacity: 1; }
+
+</style>
+
+{% endblock %}
+
+
+{% block body %}
+{{ form_start(form) }}
+{{ form_widget(form) }}
+<button class="btn btn-primary w-100">
+    <i class="fa fa-check"></i>
+    {{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
+{% endblock %}
+

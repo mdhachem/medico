@@ -1,0 +1,51 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+
+    <a class="btn btn-secondary mr-2" href="{{ path('user_index') }}">
+        <i class="fa fa-arrow-circle-left"></i>
+        {{'Back to list'|trans}}</a>
+    <div class="card p-3 mt-3">
+    <h1>User</h1>
+        {{ include('user/_delete_form.html.twig') }}
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td>{{ user.roles ? user.roles|join(', ') : '' }}</td>
+            </tr>
+
+            <tr>
+                <th>FirstName</th>
+                <td>{{ user.fisrtName }}</td>
+            </tr>
+            <tr>
+                <th>LastName</th>
+                <td>{{ user.lastName }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ user.telephone }}</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>{{ user.address }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary mt-3 w-100" href="{{ path('user_edit', {'id': user.id}) }}">
+            <i class="fa fa-pencil-alt"></i>
+            {{'Edit'|trans}}</a>
+    </div> 
+{% endblock %}

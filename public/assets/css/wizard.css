@@ -1,0 +1,146 @@
+.card {
+  padding: 1rem;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.wizard > .steps > ul {
+  display: none;
+  /* margin-top: 3em;
+  margin-bottom: 3em;
+  padding: 0;
+  flex-flow: wrap;
+  display: flex; */
+}
+
+.wizard > .steps > ul > li {
+  text-align: center;
+  flex: 8%;
+}
+
+.wizard > .steps > ul > li .done::after {
+  content: "✔";
+  color: #fff;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 0;
+  display: block;
+}
+
+.wizard > .actions > ul {
+  padding: 0 1rem 1rem 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.wizard > .actions > ul > li > a {
+  background: #222;
+  color: white;
+  border-radius: 1rem;
+  padding: 0.5em 1em;
+  margin: 0 8px 8px 0;
+}
+
+.wizard > .steps {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.wizard > .content > .title,
+.tabcontrol > .content > .title {
+  display: none;
+}
+
+.wizard > .steps > ul > li > a > .current-info {
+  display: none;
+}
+
+.wizard > .steps > ul > li > a > .number {
+  display: none;
+}
+
+.wizard > .steps .current a,
+.wizard > .steps .current a:hover,
+.wizard > .steps .current a:active {
+  background: #2184be;
+  color: #fff;
+  cursor: default;
+}
+
+.wizard > .steps a,
+.wizard > .steps a:hover,
+.wizard > .steps a:active {
+  background: gainsboro;
+  color: gray;
+  font-weight: bold;
+  padding: 0.5rem;
+  border-radius: 0.6em;
+}
+
+.wizard > .steps > ul > li::after {
+  content: "";
+  position: absolute;
+  background: #f1f1f1;
+  display: block;
+  width: 100%;
+  height: 5px;
+  top: 50px;
+  left: 0%;
+  z-index: -1;
+}
+
+.wizard > .steps > ul > li:last-child > a::after {
+  content: "";
+  display: none;
+}
+
+.wizard > .content {
+  display: block;
+  margin: 0.5em;
+  padding: 1rem;
+  overflow: hidden;
+  position: relative;
+  width: auto;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+.wizard > .content > fieldset > legend {
+  text-align: center;
+  padding: 2em;
+}
+
+.clearfix::before {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.btn-group-toggle .btn-block {
+  font-size: 1rem;
+  display: flex;
+}
+
+.btn-secondary:not(:disabled):not(.disabled).active,
+.btn-secondary:not(:disabled):not(.disabled):active,
+.show > .btn-secondary.dropdown-toggle {
+  background: #20c997;
+}
+
+.btn-group-toggle .btn-block > .btn-label {
+  flex: 0 0 25px;
+}
+.btn-group-toggle .btn-block > .value {
+  font-weight: bold;
+  flex: auto;
+}

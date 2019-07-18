@@ -1,0 +1,39 @@
+vich_uploader:
+  db_driver: orm
+
+  mappings:
+    category:
+      uri_prefix: /uploads/category
+      upload_destination: "%kernel.project_dir%/public/uploads/category"
+      namer: Vich\UploaderBundle\Naming\UniqidNamer
+
+      inject_on_load: false
+      delete_on_update: true
+      delete_on_remove: true
+
+    imagep:
+      uri_prefix: /uploads/imagep
+      upload_destination: "%kernel.project_dir%/public/uploads/imagep"
+      namer: Vich\UploaderBundle\Naming\UniqidNamer
+
+      inject_on_load: false
+      delete_on_update: true
+      delete_on_remove: true
+
+    images1:
+      uri_prefix: /uploads/images1
+      upload_destination: "%kernel.project_dir%/public/uploads/images1"
+      namer: Vich\UploaderBundle\Naming\UniqidNamer
+
+      inject_on_load: false
+      delete_on_update: true
+      delete_on_remove: true
+
+    images2:
+      uri_prefix: /uploads/images2
+      upload_destination: "%kernel.project_dir%/public/uploads/images2"
+      namer: Vich\UploaderBundle\Naming\UniqidNamer
+
+      inject_on_load: false
+      delete_on_update: true
+      delete_on_remove: true

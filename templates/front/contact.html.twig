@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+
+
+{% block body %}
+
+<div class="sub_header_in sticky_header">
+		<div class="container">
+			<h1>Contact</h1>
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /sub_header -->
+
+		<div class="container">
+			<div class="row justify-content-center">
+                <div class="col-xl-12 col-lg-12 col-md-12">
+
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+
+                {{ form_start(form) }}
+							<div class="row">
+								<div class="col">{{ form_row(form.firstname,{ 'attr' : { 'placeholder' : 'First Name' }}) }}</div>
+								<div class="col">{{ form_row(form.lastname,{ 'attr' : { 'placeholder' : 'Last Name' }}) }}</div>
+							</div>
+							<div class="row">
+								<div class="col">{{ form_row(form.email,{ 'attr' : { 'placeholder' : 'Email' }}) }}</div>
+								<div class="col">{{ form_row(form.telephone,{ 'attr' : { 'placeholder' : 'Telephone' }}) }}</div>
+							</div>
+							<div class="row">
+								<div class="col">{{ form_row(form.message,{ 'attr' : { 'placeholder' : 'Type Your Message Here' }}) }}</div>
+							</div>
+							
+								<div class="row">
+									<div class="col">
+										<div class="form-group">
+											<button class="btn btn-success" style="color: #fff;background-color: #5cb85c;border-color: #4cae4c;">Send</button>
+										</div>
+								</div>
+							</div>
+                {{ form_end(form) }}
+                </div>	
+            </div>
+            <!-- /row -->
+		</div>
+		<!-- /container -->
+	
+
+
+
+{% endblock %}
+

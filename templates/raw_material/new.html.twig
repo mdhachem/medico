@@ -1,0 +1,17 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}New RawMaterial{% endblock %}
+
+{% block body %}
+
+
+    <a class="btn btn-secondary mb-3" href="{{ path('raw_material_index') }}">
+        <i class="fa fa-arrow-circle-left"></i>
+        {{'Back to list'|trans}}
+    </a>
+
+    <h1>Create new RawMaterial</h1>
+    <div class="card p-3 mt-3">
+        {{ include('raw_material/_form.html.twig') }}
+    </div>
+{% endblock %}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0, user-scalable=0" name="viewport">
+        <link href="assets/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+        <title>
+            {% block title %}Welcome!{% endblock %}
+        </title>
+        <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/style.css" rel="stylesheet" type="text/css">
+
+        {% block stylesheets %}
+            <link href="/assets/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css">
+        {% endblock %}
+    </head>
+    <body>
+        <div class="main-wrapper">
+            <div class="header">
+                <div class="header-left">
+                    <a class="logo">
+                        <img alt="" height="35" src="/assets/images/logo.png" width="35">
+                        <span>Medico</span>
+                    </a>
+                </div>
+                <a href="javascript:void(0);" id="toggle_btn">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <a class="mobile_btn float-left" href="#sidebar" id="mobile_btn">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <ul class="nav user-menu float-right">
+                    <li class="nav-item dropdown has-arrow">
+                        <a class="dropdown-toggle nav-link user-link" data-toggle="dropdown" href="#">
+                            
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{ path('app_logout') }}">Logout</a>
+                        </div>
+                    </li>
+                </ul>
+                <div class="dropdown mobile-user-menu float-right">
+                    <a aria-expanded="false" class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-ellipsis-v"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="{{ path('app_logout') }}">Logout</a>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar-inner slimscroll">
+                    <div class="sidebar-menu" id="sidebar-menu">
+                        <ul>
+                            <li class="menu-title">Main</li>
+                            <li class="{% if app.request.attributes.get('_route') starts with 'dashboard' %}active{% endif %}">
+                                <a href="{{ path('dashboard_admin') }}">
+                                    <i class="fa fa-dashboard"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="menu-title">Management</li>
+                            <li class="{% if app.request.attributes.get('_route') starts with 'user' %}active{% endif %}">
+                                <a href="{{ path('user_index') }}">
+                                    <i class="fa fa-user"></i>
+                                    <span>Users</span>
+                                </a>
+                            </li>
+
+                            <li class="{% if app.request.attributes.get('_route') starts with 'product' %}active{% endif %}">
+                                <a href="{{ path('product_index') }}">
+                                    <i class="fa  fa-window-restore "></i>
+                                    <span>Products</span>
+                                </a>
+                            </li>
+                            <li class="{% if app.request.attributes.get('_route') starts with 'category' %}active{% endif %}">
+                                <a href="{{ path('category_index') }}">
+                                    <i class="fa fa-list-ul"></i>
+                                    <span>Categorie</span>
+                                </a>
+                            </li>
+                            <li class="{% if app.request.attributes.get('_route') starts with 'raw' %}active{% endif %}">
+                                <a href="{{ path('raw_material_index') }}">
+                                    <i class="fa fa-hashtag"></i>
+                                    <span>Raw Material</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="page-wrapper">
+                <div class="content"> {% block body %}{% endblock %}
+                    </div>
+                    <div class="sidebar-overlay" data-reff=""></div>
+                </div>
+            </div>
+        </body>
+    </html>
+</div>
+<script src="/assets/js/jquery-3.2.1.min.js"></script>
+<script src="/assets/js/popper.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+
+<script src="/assets/js/jquery.slimscroll.js"></script>
+<script src="/assets/js/jquery.dataTables.min.js"></script>
+<script>
+    // //Sortable data tables
+    $('.sortable-table').DataTable();
+</script>
+{% block javascripts %}{% endblock %}
+<script src="/assets/js/app.js"></script></body></html>

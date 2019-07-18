@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Medico{% endblock %}
+
+{% block body %}
+<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+
+                {% for category in categories %}
+					<!-- shop -->
+					<div class="col-md-4 col-xs-6">
+						<div class="shop">
+							<div class="shop-img">
+								<img src="/uploads/category/{{ category.image }}" width="350" height="350" alt="">
+							</div>
+							<div class="shop-body">
+								<h3>{{ category.name }}</h3>
+								<a href="{{ path('sub_category', { 'id' : category.id }) }}" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+							</div>
+						</div>
+					</div>
+					<!-- /shop -->
+                {% endfor %}
+					
+
+					
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}Category index{% endblock %}
+
+{% block body %}
+    <h1>Category</h1>
+
+    <div class="mb-3">
+        <a class="btn btn-primary" href="{{ path('category_new') }}">
+            <i class="fa fa-plus"></i>
+            {{'Create new'|trans}}</a>
+    </div>
+
+    {% for message in app.flashes('error') %}
+    <div class="alert alert-danger">
+        {{ message }}
+    </div>
+    {% endfor %}
+
+    <table class="table sortable-table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+            <tr>
+                <td>{{ category.id }}</td>
+                <td>{{ category.name }}</td>
+                <td>
+                        <a class="btn btn-primary btn-sm mr-2" href="{{ path('category_show', {'id': category.id}) }}">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                        <a class="btn btn-primary btn-sm mr-2" href="{{ path('category_edit', {'id': category.id}) }}">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

@@ -1,0 +1,141 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Order Details {% endblock %}
+
+{% block stylesheets %}
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+#details{
+    text-align: right;
+}
+</style>
+
+
+
+{% endblock %}
+
+{% block body %}
+    {% set total_ht  = 0 %}
+    {% set tva       = 0 %}
+    {% set total_ttc = 0 %}
+
+    <table class="table">
+        <tr>
+            <td>
+                <h3>Commande n° {{commande.id}}</h3>
+                <h4>Du {{commande.createdAt | date('d/m/Y')}}</h4>
+            </td>
+            <td id="details">
+                <h5>{{commande.firstName}}</h5>
+                <h5>{{commande.lastName}}</h5>
+                <h5>{{commande.email}}</h5>
+                <h5>{{commande.address}}</h4>
+          
+                <h5>Tel : {{commande.telephone}}</h4>
+            </td>
+        </tr>
+    </table>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Produit</th>
+                <th>Description</th>
+                <th>Color</th>
+                <th>PU</th>
+                <th>Qté</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            {% for ligne in ligneCommande %}
+            <tr>
+                <td>{{ligne.product.id}}</td>
+                <td>{{ligne.product.name}}t</td>
+                <td>{{ligne.description}}t</td>
+                <td>{{ligne.color}}t</td>
+                <td>{{ligne.prix}}</td>
+                <td>{{ligne.quantity}}</td>
+                <td>{{ligne.prix * ligne.quantity}}</td>
+            </tr>
+            {% set total_ht  = total_ht +  ligne.prix * ligne.quantity %}
+            {% endfor %}
+            
+            {% set tva       =  total_ht * 10 / 100 %}
+            {% set total_ttc =  tva + total_ht  %}
+
+
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Total HT</td>
+                <td>{{total_ht}}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Montant TVA 10%</td>
+                <td>{{tva}}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><strong>Total TTC</strong></td>
+                <td><strong>{{total_ttc}}</strong></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div>
+        <button type="submit" class="btn btn-success">Imprimer</button>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+$(document).ready(function() {
+    $(function () {
+        $('button[type="submit"]').click(function () {
+            var pageTitle = 'Comande details',
+                stylesheet = '//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css',
+                win = window.open('', 'Print', 'width=500,height=300');
+            win.document.write('<html><head><title>' + pageTitle + '</title>' +
+                '<link rel="stylesheet" href="' + stylesheet + '">' +
+                '</head><body>' + $('.table')[0].outerHTML +'<br>'+ $('.table')[1].outerHTML + '</body></html>');
+            win.document.close();
+            win.print();
+            win.close();
+            return false;
+        });
+    });
+
+});
+
+</script>
+{% endblock %}

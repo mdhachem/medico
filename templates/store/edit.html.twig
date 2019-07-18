@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Edit Product{% endblock %}
+
+
+{% block stylesheets %}
+<style>
+.custom-file-label { opacity: 0; }
+.custom-file-input { opacity: 1; }
+
+</style>
+
+{% endblock %}
+
+
+{% block body %}
+
+    
+    <div class="card p-3">
+        <h1>Edit Product</h1>
+        {{ include('product/_form.html.twig', {'button_label': 'Update'}) }}
+    </div>
+    
+{% endblock %}
